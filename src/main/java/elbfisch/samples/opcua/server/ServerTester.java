@@ -1,6 +1,6 @@
 /**
  * PROJECT   : Elbfisch - java process automation controller (jPac)
- * MODULE    : ServerTester.java
+ * MODULE    : ClientTester.java
  * VERSION   : -
  * DATE      : -
  * PURPOSE   : 
@@ -25,8 +25,7 @@
 
 package elbfisch.samples.opcua.server;
 
-import java.util.concurrent.Executors;
-import static javafx.application.Application.launch;
+//import static javafx.application.Application.launch;
 import javafx.stage.Stage;
 import org.jpac.Module;
 import org.jpac.fx.DashboardLauncher;
@@ -40,25 +39,11 @@ public class ServerTester extends ModuleTesterTemplate{
     /**
      * @param args the command line arguments
      */
-    static boolean done = false;
-    static int     cmd  = 0;
-    
     public static void main(String[] args) {
+        System.out.println(">>>> ServerTester.main()");
         Module module = new ServerMain();
         module.start();
-//        ExecutorService executor = Executors.newSingleThreadExecutor();
-//        executor.submit(() -> {
-//            System.out.println("Hello world");
-//            //Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
-//            SignedInteger command = (SignedInteger) SignalRegistry.getInstance().getSignal("Main.lastCommand");
-//            do{
-//                command.setDeferred(cmd++);
-//                try{Thread.sleep(20);}catch(InterruptedException exc){};
-//            }
-//            while(!done);
-//        });        
         launch(args);
-        done = true;
     }
     
     @Override
@@ -72,3 +57,4 @@ public class ServerTester extends ModuleTesterTemplate{
         }
     }
 }
+

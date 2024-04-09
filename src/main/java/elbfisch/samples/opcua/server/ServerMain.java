@@ -1,6 +1,6 @@
 /**
  * PROJECT   : Elbfisch - java process automation controller (jPac)
- * MODULE    : ServerMain.java
+ * MODULE    : ClientMain.java
  * VERSION   : -
  * DATE      : -
  * PURPOSE   : 
@@ -112,6 +112,7 @@ public class ServerMain extends Module{
                     handleRequest(handshake.getCommand());
                     handshake.acknowledge(result);
                     handshake.requestRemoved().await(HANDSHAKETIMEOUT);
+                    busyTime.await();
                     handshake.resetAcknowledgement();
                     busyTime.await();
                 }
@@ -140,6 +141,8 @@ public class ServerMain extends Module{
         lastCommand.set(command);
         analogValue.set(Math.PI * command);
         comment.set("last command handled '" + command + "'");
+        busyTime.await();
+        busyTime.await();
         busyTime.await();
         busyTime.await();
         return result++;
